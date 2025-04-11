@@ -1,4 +1,3 @@
-return function()
 	--\\ Services //--
 	local VoiceChatService = game:GetService("VoiceChatService")
 	
@@ -648,4 +647,3 @@ return function()
 	MainScreen.Parent = LocalPlayer.PlayerGui
 	
 	StartHack()
-end
