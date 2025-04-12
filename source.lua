@@ -1,5 +1,6 @@
 	--\\ Services //--
 	local VoiceChatService = game:GetService("VoiceChatService")
+	local UserInputService = game:GetService("UserInputService")
 	
 	--\\ Varaibles //--
 	local LocalPlayer = game.Players.LocalPlayer
@@ -7,9 +8,11 @@
 	local MainScreen: ScreenGui
 	
 	--\\ Methods //--
+	local PlaceId = game.PlaceId
+	
 	local Colors = {
-		NormalButtonColor = Color3.new(0.176471, 0.176471, 0.176471);
-		ToggledButtonColor = Color3.new(0.34902, 0.34902, 0.34902);
+		NormalButtonColor = Color3.new(1, 1, 1);
+		ToggledButtonColor = Color3.new(0, 1, 0);
 	}
 	local Places = {
 		["ShaletM"] = 1575090225
@@ -36,8 +39,6 @@
 			--if Player == LocalPlayer then continue end
 			local PlayerDisScore = string.match(Player.DisplayName:lower(), Text:lower()) or ""
 			local PlayerUseScore = string.match(Player.Name:lower(), Text:lower()) or ""
-			print(PlayerDisScore)
-			print(PlayerUseScore)
 			if #PlayerDisScore > HighestDisScore then
 				HighestDisScore = #PlayerDisScore
 				HighestInDis = Player
@@ -123,7 +124,6 @@
 		local LockName = Instance.new("TextButton")
 		local TextLabel_8 = Instance.new("TextLabel")
 		local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
-		local Sounds = Instance.new("Folder")
 
 		--Properties:
 
@@ -135,7 +135,7 @@
 		StartFrame.Name = "StartFrame"
 		StartFrame.Parent = PXLHub
 		StartFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-		StartFrame.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		StartFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		StartFrame.BackgroundTransparency = 0.200
 		StartFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		StartFrame.BorderSizePixel = 0
@@ -153,10 +153,10 @@
 		Title.Size = UDim2.new(0.543478251, 0, 0.200000003, 0)
 		Title.Font = Enum.Font.Nunito
 		Title.Text = "PXL Hub"
-		Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title.TextColor3 = Color3.fromRGB(0, 255, 0)
 		Title.TextScaled = true
 		Title.TextSize = 14.000
-		Title.TextTransparency = 0.200
+		Title.TextTransparency = 0.450
 		Title.TextWrapped = true
 
 		Content.Name = "Content"
@@ -169,9 +169,9 @@
 		Content.Size = UDim2.new(0.945652187, 0, 0.533333361, 0)
 		Content.Font = Enum.Font.Nunito
 		Content.Text = "Thanks for using PXL Hub ...<br/>Credits: P_exile<br/>Loading ..."
-		Content.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Content.TextColor3 = Color3.fromRGB(0, 255, 0)
 		Content.TextSize = 18.000
-		Content.TextTransparency = 0.200
+		Content.TextTransparency = 0.450
 		Content.TextWrapped = true
 		Content.TextXAlignment = Enum.TextXAlignment.Left
 		Content.TextYAlignment = Enum.TextYAlignment.Top
@@ -189,9 +189,9 @@
 		Start.Size = UDim2.new(0.945652246, 0, 0.148220047, 0)
 		Start.Font = Enum.Font.Nunito
 		Start.Text = "/Start"
-		Start.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Start.TextColor3 = Color3.fromRGB(0, 255, 0)
 		Start.TextSize = 18.000
-		Start.TextTransparency = 0.200
+		Start.TextTransparency = 0.450
 		Start.TextWrapped = true
 		Start.TextXAlignment = Enum.TextXAlignment.Left
 		Start.TextYAlignment = Enum.TextYAlignment.Top
@@ -199,7 +199,7 @@
 		MainHack.Name = "MainHack"
 		MainHack.Parent = PXLHub
 		MainHack.AnchorPoint = Vector2.new(0.5, 0.5)
-		MainHack.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		MainHack.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		MainHack.BackgroundTransparency = 0.200
 		MainHack.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		MainHack.BorderSizePixel = 0
@@ -218,16 +218,16 @@
 		Title_2.Size = UDim2.new(0.543478251, 0, 0.106122449, 0)
 		Title_2.Font = Enum.Font.Nunito
 		Title_2.Text = "PXL Hub"
-		Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Title_2.TextColor3 = Color3.fromRGB(0, 255, 0)
 		Title_2.TextScaled = true
 		Title_2.TextSize = 14.000
-		Title_2.TextTransparency = 0.200
+		Title_2.TextTransparency = 0.450
 		Title_2.TextWrapped = true
 
 		Choose.Name = "Choose"
 		Choose.Parent = MainHack
 		Choose.Active = true
-		Choose.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		Choose.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Choose.BackgroundTransparency = 1.000
 		Choose.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Choose.BorderSizePixel = 0
@@ -238,7 +238,7 @@
 
 		TargetPlr.Name = "TargetPlr"
 		TargetPlr.Parent = Choose
-		TargetPlr.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		TargetPlr.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		TargetPlr.BackgroundTransparency = 0.700
 		TargetPlr.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TargetPlr.BorderSizePixel = 0
@@ -261,10 +261,10 @@
 		TextLabel.Size = UDim2.new(1, 0, 0.600000024, 0)
 		TextLabel.Font = Enum.Font.Nunito
 		TextLabel.Text = "TargetPlr"
-		TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel.TextScaled = true
 		TextLabel.TextSize = 14.000
-		TextLabel.TextTransparency = 0.200
+		TextLabel.TextTransparency = 0.450
 		TextLabel.TextWrapped = true
 
 		UIListLayout.Parent = Choose
@@ -274,7 +274,7 @@
 
 		Misc.Name = "Misc"
 		Misc.Parent = Choose
-		Misc.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		Misc.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Misc.BackgroundTransparency = 0.700
 		Misc.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Misc.BorderSizePixel = 0
@@ -297,15 +297,15 @@
 		TextLabel_2.Size = UDim2.new(1, 0, 0.600000024, 0)
 		TextLabel_2.Font = Enum.Font.Nunito
 		TextLabel_2.Text = "Misc"
-		TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_2.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel_2.TextScaled = true
 		TextLabel_2.TextSize = 14.000
-		TextLabel_2.TextTransparency = 0.200
+		TextLabel_2.TextTransparency = 0.450
 		TextLabel_2.TextWrapped = true
 
 		_1575090225.Name = "1575090225"
 		_1575090225.Parent = Choose
-		_1575090225.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		_1575090225.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		_1575090225.BackgroundTransparency = 0.700
 		_1575090225.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		_1575090225.BorderSizePixel = 0
@@ -329,10 +329,10 @@
 		TextLabel_3.Size = UDim2.new(1, 0, 0.600000024, 0)
 		TextLabel_3.Font = Enum.Font.Nunito
 		TextLabel_3.Text = "Game"
-		TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_3.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel_3.TextScaled = true
 		TextLabel_3.TextSize = 14.000
-		TextLabel_3.TextTransparency = 0.200
+		TextLabel_3.TextTransparency = 0.450
 		TextLabel_3.TextWrapped = true
 
 		Frames.Name = "Frames"
@@ -341,7 +341,7 @@
 		TargetPlr_2.Name = "TargetPlr"
 		TargetPlr_2.Parent = Frames
 		TargetPlr_2.Active = true
-		TargetPlr_2.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		TargetPlr_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		TargetPlr_2.BackgroundTransparency = 0.700
 		TargetPlr_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TargetPlr_2.BorderSizePixel = 0
@@ -351,18 +351,19 @@
 
 		PlayerNameToSelect.Name = "PlayerNameToSelect"
 		PlayerNameToSelect.Parent = TargetPlr_2
-		PlayerNameToSelect.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
-		PlayerNameToSelect.BackgroundTransparency = 0.200
+		PlayerNameToSelect.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		PlayerNameToSelect.BackgroundTransparency = 0.950
 		PlayerNameToSelect.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		PlayerNameToSelect.BorderSizePixel = 0
 		PlayerNameToSelect.Position = UDim2.new(0.0572687238, 0, 0.09375, 0)
 		PlayerNameToSelect.Size = UDim2.new(0.881057262, 0, 0.145833328, 0)
 		PlayerNameToSelect.Font = Enum.Font.Nunito
+		PlayerNameToSelect.PlaceholderColor3 = Color3.fromRGB(0, 255, 0)
 		PlayerNameToSelect.PlaceholderText = "PlayerUsername"
 		PlayerNameToSelect.Text = ""
 		PlayerNameToSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
 		PlayerNameToSelect.TextSize = 14.000
-		PlayerNameToSelect.TextTransparency = 0.200
+		PlayerNameToSelect.TextTransparency = 0.450
 
 		SelectedPlayerDisplay.Name = "SelectedPlayerDisplay"
 		SelectedPlayerDisplay.Parent = TargetPlr_2
@@ -374,16 +375,16 @@
 		SelectedPlayerDisplay.Size = UDim2.new(0.934179902, 0, 0.0938802138, 0)
 		SelectedPlayerDisplay.Font = Enum.Font.Nunito
 		SelectedPlayerDisplay.Text = ""
-		SelectedPlayerDisplay.TextColor3 = Color3.fromRGB(255, 255, 255)
+		SelectedPlayerDisplay.TextColor3 = Color3.fromRGB(0, 255, 0)
 		SelectedPlayerDisplay.TextScaled = true
 		SelectedPlayerDisplay.TextSize = 14.000
-		SelectedPlayerDisplay.TextTransparency = 0.200
+		SelectedPlayerDisplay.TextTransparency = 0.450
 		SelectedPlayerDisplay.TextWrapped = true
 
 		TP.Name = "TP"
 		TP.Parent = TargetPlr_2
-		TP.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-		TP.BackgroundTransparency = 0.200
+		TP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TP.BackgroundTransparency = 0.950
 		TP.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TP.BorderSizePixel = 0
 		TP.Position = UDim2.new(0.528634369, 0, 0.291666657, 0)
@@ -404,16 +405,16 @@
 		TextLabel_4.Size = UDim2.new(1, 0, 0.600000024, 0)
 		TextLabel_4.Font = Enum.Font.Nunito
 		TextLabel_4.Text = "TP"
-		TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_4.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel_4.TextScaled = true
 		TextLabel_4.TextSize = 14.000
-		TextLabel_4.TextTransparency = 0.200
+		TextLabel_4.TextTransparency = 0.450
 		TextLabel_4.TextWrapped = true
 
 		See.Name = "See"
 		See.Parent = TargetPlr_2
-		See.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-		See.BackgroundTransparency = 0.200
+		See.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		See.BackgroundTransparency = 0.950
 		See.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		See.BorderSizePixel = 0
 		See.Position = UDim2.new(0.0549999997, 0, 0.291999996, 0)
@@ -435,16 +436,16 @@
 		TextLabel_5.Size = UDim2.new(1, 0, 0.600000024, 0)
 		TextLabel_5.Font = Enum.Font.Nunito
 		TextLabel_5.Text = "See"
-		TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_5.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel_5.TextScaled = true
 		TextLabel_5.TextSize = 14.000
-		TextLabel_5.TextTransparency = 0.200
+		TextLabel_5.TextTransparency = 0.450
 		TextLabel_5.TextWrapped = true
 
 		Misc_2.Name = "Misc"
 		Misc_2.Parent = Frames
 		Misc_2.Active = true
-		Misc_2.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		Misc_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Misc_2.BackgroundTransparency = 0.700
 		Misc_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Misc_2.BorderSizePixel = 0
@@ -455,8 +456,8 @@
 
 		UnbanMic.Name = "UnbanMic"
 		UnbanMic.Parent = Misc_2
-		UnbanMic.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-		UnbanMic.BackgroundTransparency = 0.200
+		UnbanMic.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		UnbanMic.BackgroundTransparency = 0.950
 		UnbanMic.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		UnbanMic.BorderSizePixel = 0
 		UnbanMic.Position = UDim2.new(0.506360829, 0, 0.110247962, 0)
@@ -477,16 +478,16 @@
 		TextLabel_6.Size = UDim2.new(1, 0, 0.400000006, 0)
 		TextLabel_6.Font = Enum.Font.Nunito
 		TextLabel_6.Text = "UnbanMic"
-		TextLabel_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_6.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel_6.TextScaled = true
 		TextLabel_6.TextSize = 14.000
-		TextLabel_6.TextTransparency = 0.200
+		TextLabel_6.TextTransparency = 0.450
 		TextLabel_6.TextWrapped = true
 
 		_1575090225_2.Name = "1575090225"
 		_1575090225_2.Parent = Frames
 		_1575090225_2.Active = true
-		_1575090225_2.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+		_1575090225_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		_1575090225_2.BackgroundTransparency = 0.700
 		_1575090225_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		_1575090225_2.BorderSizePixel = 0
@@ -497,8 +498,8 @@
 
 		LockSkin.Name = "LockSkin"
 		LockSkin.Parent = _1575090225_2
-		LockSkin.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-		LockSkin.BackgroundTransparency = 0.200
+		LockSkin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		LockSkin.BackgroundTransparency = 0.950
 		LockSkin.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		LockSkin.BorderSizePixel = 0
 		LockSkin.Position = UDim2.new(0.506360829, 0, 0.110247962, 0)
@@ -519,16 +520,16 @@
 		TextLabel_7.Size = UDim2.new(1, 0, 0.400000006, 0)
 		TextLabel_7.Font = Enum.Font.Nunito
 		TextLabel_7.Text = "LockSkin"
-		TextLabel_7.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_7.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel_7.TextScaled = true
 		TextLabel_7.TextSize = 14.000
-		TextLabel_7.TextTransparency = 0.200
+		TextLabel_7.TextTransparency = 0.450
 		TextLabel_7.TextWrapped = true
 
 		LockName.Name = "LockName"
 		LockName.Parent = _1575090225_2
-		LockName.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-		LockName.BackgroundTransparency = 0.200
+		LockName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		LockName.BackgroundTransparency = 0.950
 		LockName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		LockName.BorderSizePixel = 0
 		LockName.Position = UDim2.new(0.0329999998, 0, 0.109999999, 0)
@@ -549,64 +550,76 @@
 		TextLabel_8.Size = UDim2.new(1, 0, 0.400000006, 0)
 		TextLabel_8.Font = Enum.Font.Nunito
 		TextLabel_8.Text = "LockName"
-		TextLabel_8.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_8.TextColor3 = Color3.fromRGB(0, 255, 0)
 		TextLabel_8.TextScaled = true
 		TextLabel_8.TextSize = 14.000
-		TextLabel_8.TextTransparency = 0.200
+		TextLabel_8.TextTransparency = 0.450
 		TextLabel_8.TextWrapped = true
 
 		UIAspectRatioConstraint_2.Parent = MainHack
 		UIAspectRatioConstraint_2.AspectRatio = 1.580
-
-		Sounds.Name = "Sounds"
-		Sounds.Parent = PXLHub
 		
 		return PXLHub :: ScreenGui
 	end
 	
 	local function LoadGui_Sec()
-		local MapChoose = MainScreen.MainHack.Choose:FindFirstChild(game.PlaceId)
+		local MapChoose = MainScreen.MainHack.Choose:FindFirstChild(PlaceId)
 		
 		MainScreen.StartFrame.Content.RichText = true
+		
 		Instance.new("UIDragDetector", MainScreen.MainHack)
+		
 		if MapChoose then
 			MapChoose.Visible = true
 		end
 	end
 	
-	local function Setup()
-		--\\ SetupChoose
-		for _, Button: TextButton in MainScreen.MainHack.Choose:GetChildren() do
-			if not Button:IsA("TextButton") then continue end
-			Button.MouseButton1Click:Connect(function()
-				OpenFrame(MainScreen.MainHack.Frames[Button.Name])
+	local function SetupBasics()
+		--\\ Functions //--
+		local PressesScore = 0
+		local ScoreTime = 0.75
+		local RequiredScore = 3
+		local function OnPressLCtrl()
+			PressesScore += 1
+			task.delay(ScoreTime, function()
+				PressesScore -= 1
 			end)
+			if PressesScore >= RequiredScore then
+				PlaySound("BigTextSound")
+				MainScreen.Enabled = not MainScreen.Enabled
+			end
 		end
 		
-		--\\ Misc -> UnBanMic
-		MainScreen.MainHack.Frames.Misc.UnbanMic.MouseButton1Click:Connect(function()
-			VoiceChatService:joinVoice()
+		--\\ Connections //--
+		UserInputService.InputBegan:Connect(function(input)
+			if input.KeyCode == Enum.KeyCode.LeftControl then
+				OnPressLCtrl()
+			end
 		end)
+	end
+	
+	local function Setup()
+		--\\ Functions //--
+		local function UnbanMic()
+			VoiceChatService:joinVoice()
+		end
 		
-		--\\ TargetPlayer -> PlayerSelector
-		MainScreen.MainHack.Frames.TargetPlr.PlayerNameToSelect:GetPropertyChangedSignal("Text"):Connect(function()
+		local function OnPlayerNameToSelectBoxChange()
 			PlaySound("TextSound")
 			local Player = GetPlayerFromSomeTextText(MainScreen.MainHack.Frames.TargetPlr.PlayerNameToSelect.Text)
 			MainScreen.MainHack.Frames.TargetPlr.SelectedPlayerDisplay.Text = ""
 			if not Player then return end
 			SelectedPlayer = Player
 			MainScreen.MainHack.Frames.TargetPlr.SelectedPlayerDisplay.Text = `{Player.DisplayName}(@{Player.Name}) Selected !`
-		end)
+		end
 		
-		--\\ TargetPlayer -> TP
-		MainScreen.MainHack.Frames.TargetPlr.TP.MouseButton1Click:Connect(function()
+		local function TPToTargetPlayer()
 			if not SelectedPlayer then return end
 			LocalPlayer.Character:PivotTo(SelectedPlayer.Character:GetPivot())
-		end)
+		end
 		
-		--\\ TargetPlayer -> See
 		local See_Toggled = false
-		MainScreen.MainHack.Frames.TargetPlr.See.MouseButton1Click:Connect(function()
+		local function SeeTargetPlayer()
 			if not See_Toggled then
 				if not SelectedPlayer then return end
 				See_Toggled = true
@@ -617,71 +630,72 @@
 				MainScreen.MainHack.Frames.TargetPlr.See.BackgroundColor3 = Colors.NormalButtonColor
 				Cam.CameraSubject = LocalPlayer.Character.Humanoid
 			end
-		end)
+		end
 		
-		--\\ShaletM\\
 		local ShaletMLockName_Toggled = false
-		local ShaletMLockName_SpawnConnection
-		local ShaletMLockName_ChangedConnection
-		local ShaletMLockSkin_Toggled = false
-		local ShaletMLockSkin_SpawnConnection
-		local ShaletMLockSkin_ChangedConnection
-		
-		export type ShaletMChar = Model & {
-			Head: BasePart & {
-				HDAdminTitle : BillboardGui & {
-					TextLabel: TextLabel
-				}
-			};
-			Humanoid: Humanoid
-		}
-		--\\ ShaletM -> LockName
-		MainScreen.MainHack.Frames[Places.ShaletM].LockName.MouseButton1Click:Connect(function()
-			local LocalPlayerCharacter: ShaletMChar = LocalPlayer.Character
-			
+		local function ShaletM_LockName()
+			local LocalPlayerCharacter: Model = LocalPlayer.Character
+
 			if not ShaletMLockName_Toggled then
 				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.ToggledButtonColor
 				ShaletMLockName_Toggled = true
-				local function Reset()
-					task.delay(1, function()
-						game.ReplicatedStorage.PrivateCommands.Title:FireServer()
-					end)
-				end
-				local function SetupPlayerSpawn()
-					ShaletMLockName_ChangedConnection = LocalPlayerCharacter.Head.HDAdminTitle.TextLabel:GetPropertyChangedSignal("Text"):Connect(Reset)
-				end
-				SetupPlayerSpawn()
-				ShaletMLockName_SpawnConnection = LocalPlayer.CharacterAdded:Connect(SetupPlayerSpawn)
 			else
 				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.NormalButtonColor
 				ShaletMLockName_Toggled = false
-				ShaletMLockName_SpawnConnection:Disconnect()
-				ShaletMLockName_ChangedConnection:Disconnect()
 			end
-		end)
+		end
 		
-		--\\ ShaletM -> LockSkin
-		MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.MouseButton1Click:Connect(function()
-			local LocalPlayerCharacter: ShaletMChar = LocalPlayer.Character
-			
+		local ShaletMLockSkin_Toggled = false
+		local function ShaletM_LockSkin()
+			local LocalPlayerCharacter: Model = LocalPlayer.Character
+
 			if not ShaletMLockSkin_Toggled then
 				MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.BackgroundColor3 = Colors.ToggledButtonColor
 				ShaletMLockSkin_Toggled = true
-				local function Reset()
-					game.ReplicatedStorage.PrivateCommands.Char:FireServer()
-				end
-				local function SetupPlayerSpawn()
-					ShaletMLockSkin_ChangedConnection = LocalPlayerCharacter.Humanoid.ApplyDescriptionFinished:Connect(Reset)
-				end
-				SetupPlayerSpawn()
-				ShaletMLockSkin_SpawnConnection = LocalPlayer.CharacterAdded:Connect(SetupPlayerSpawn)
 			else
 				MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.BackgroundColor3 = Colors.NormalButtonColor
 				ShaletMLockSkin_Toggled = false
-				ShaletMLockSkin_SpawnConnection:Disconnect()
-				ShaletMLockSkin_ChangedConnection:Disconnect()
 			end
-		end)
+		end
+		
+		local function OnCharacterSpawn()
+			if PlaceId == Places.ShaletM then
+				local HDAdminTitleText: TextLabel = LocalPlayer.Character:WaitForChild("Head"):WaitForChild("HDAdminTitle").TextLabel
+				local LocalPlayerHumanoid: Humanoid = LocalPlayer.Character:WaitForChild("Humanoid")
+				
+				HDAdminTitleText:GetPropertyChangedSignal("Text"):Connect(function()
+					if ShaletMLockName_Toggled then
+						game.ReplicatedStorage.PrivateCommands.Title:FireServer()
+					end
+				end)
+				
+				LocalPlayerHumanoid.ApplyDescriptionFinished:Connect(function()
+					if ShaletMLockSkin_Toggled then
+						game.ReplicatedStorage.PrivateCommands.Char:FireServer(LocalPlayer.UserId)
+					end
+				end)
+			end
+		end
+		
+		--\\ Connections //--
+		MainScreen.MainHack.Frames.TargetPlr.PlayerNameToSelect:GetPropertyChangedSignal("Text"):Connect(OnPlayerNameToSelectBoxChange)
+		MainScreen.MainHack.Frames.TargetPlr.TP.MouseButton1Click:Connect(TPToTargetPlayer)
+		MainScreen.MainHack.Frames.TargetPlr.See.MouseButton1Click:Connect(SeeTargetPlayer)
+
+		MainScreen.MainHack.Frames.Misc.UnbanMic.MouseButton1Click:Connect(UnbanMic)
+
+		MainScreen.MainHack.Frames[Places.ShaletM].LockName.MouseButton1Click:Connect(ShaletM_LockName)
+		MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.MouseButton1Click:Connect(ShaletM_LockSkin)
+		
+		LocalPlayer.CharacterAdded:Connect(OnCharacterSpawn)
+		OnCharacterSpawn()
+		
+		for _, Button: TextButton in MainScreen.MainHack.Choose:GetChildren() do
+			if not Button:IsA("TextButton") then continue end
+			Button.MouseButton1Click:Connect(function()
+				OpenFrame(MainScreen.MainHack.Frames[Button.Name])
+			end)
+		end
 	end
 	
 	local function StartHack()
@@ -705,6 +719,7 @@
 		TweenText(MainScreen.StartFrame.Content, MainScreen.StartFrame.Content.Text, 3)
 		
 		Setup()
+		SetupBasics()
 		
 		task.wait(1)
 		
