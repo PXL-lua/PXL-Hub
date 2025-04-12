@@ -650,6 +650,7 @@
 				local function SetupPlayerSpawn()
 					ShaletMLockName_ChangedConnection = LocalPlayerCharacter.Head.HDAdminTitle.TextLabel:GetPropertyChangedSignal("Text"):Connect(Reset)
 				end
+				SetupPlayerSpawn()
 				ShaletMLockName_SpawnConnection = LocalPlayer.CharacterAdded:Connect(SetupPlayerSpawn)
 			else
 				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.NormalButtonColor
@@ -672,6 +673,7 @@
 				local function SetupPlayerSpawn()
 					ShaletMLockSkin_ChangedConnection = LocalPlayerCharacter.Humanoid.ApplyDescriptionFinished:Connect(Reset)
 				end
+				SetupPlayerSpawn()
 				ShaletMLockSkin_SpawnConnection = LocalPlayer.CharacterAdded:Connect(SetupPlayerSpawn)
 			else
 				MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.BackgroundColor3 = Colors.NormalButtonColor
