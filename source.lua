@@ -11,13 +11,15 @@
 		NormalButtonColor = Color3.new(0.176471, 0.176471, 0.176471);
 		ToggledButtonColor = Color3.new(0.34902, 0.34902, 0.34902);
 	}
+	local Places = {
+		["ShaletM"] = 1575090225
+	}
 	local Sounds = {
 		["TextSound"] = "rbxassetid://5416666166";
 		["BigTextSound"] = "rbxassetid://7367827725";
 	}
 	local SelectedPlayer: Player
-	local See_Toggled = false
-	
+		
 	--\\ Types //--
 	export type SoundName = 
 		"TextSound"|
@@ -128,6 +130,7 @@
 		PXLHub.Name = "PXLHub"
 		PXLHub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 		PXLHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		PXLHub.ResetOnSpawn = false
 
 		StartFrame.Name = "StartFrame"
 		StartFrame.Parent = PXLHub
@@ -203,7 +206,6 @@
 		MainHack.ClipsDescendants = true
 		MainHack.Position = UDim2.new(0.49930653, 0, 0.511348367, 0)
 		MainHack.Size = UDim2.new(0.536754489, 0, 0.39967373, 0)
-		MainHack.Visible = false
 
 		Title_2.Name = "Title"
 		Title_2.Parent = MainHack
@@ -368,7 +370,7 @@
 		SelectedPlayerDisplay.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		SelectedPlayerDisplay.BorderSizePixel = 0
 		SelectedPlayerDisplay.Position = UDim2.new(0.0572687238, 0, 0, 0)
-		SelectedPlayerDisplay.Size = UDim2.new(0, 200, 0, 17)
+		SelectedPlayerDisplay.Size = UDim2.new(0.934179902, 0, 0.0938802138, 0)
 		SelectedPlayerDisplay.Font = Enum.Font.Nunito
 		SelectedPlayerDisplay.Text = ""
 		SelectedPlayerDisplay.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -415,6 +417,7 @@
 		See.BorderSizePixel = 0
 		See.Position = UDim2.new(0.0549999997, 0, 0.291999996, 0)
 		See.Size = UDim2.new(0.374449313, 0, 0.145833328, 0)
+		See.Visible = false
 		See.Font = Enum.Font.Roboto
 		See.Text = ""
 		See.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -514,7 +517,7 @@
 		TextLabel_7.Position = UDim2.new(0.5, 0, 0.5, 0)
 		TextLabel_7.Size = UDim2.new(1, 0, 0.400000006, 0)
 		TextLabel_7.Font = Enum.Font.Nunito
-		TextLabel_7.Text = "UnbanMic"
+		TextLabel_7.Text = "LockSkin"
 		TextLabel_7.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TextLabel_7.TextScaled = true
 		TextLabel_7.TextSize = 14.000
@@ -544,7 +547,7 @@
 		TextLabel_8.Position = UDim2.new(0.5, 0, 0.5, 0)
 		TextLabel_8.Size = UDim2.new(1, 0, 0.400000006, 0)
 		TextLabel_8.Font = Enum.Font.Nunito
-		TextLabel_8.Text = "UnbanMic"
+		TextLabel_8.Text = "LockName"
 		TextLabel_8.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TextLabel_8.TextScaled = true
 		TextLabel_8.TextSize = 14.000
@@ -561,8 +564,13 @@
 	end
 	
 	local function LoadGui_Sec()
+		local MapChoose = MainScreen.MainHack.Choose:FindFirstChild(game.PlaceId)
+		
 		MainScreen.StartFrame.Content.RichText = true
 		Instance.new("UIDragDetector", MainScreen.MainHack)
+		if MapChoose then
+			MapChoose.Visible = true
+		end
 	end
 	
 	local function Setup()
@@ -596,6 +604,7 @@
 		end)
 		
 		--\\ TargetPlayer -> See
+		local See_Toggled = false
 		MainScreen.MainHack.Frames.TargetPlr.See.MouseButton1Click:Connect(function()
 			if not See_Toggled then
 				if not SelectedPlayer then return end
@@ -606,6 +615,66 @@
 				See_Toggled = false
 				MainScreen.MainHack.Frames.TargetPlr.See.BackgroundColor3 = Colors.NormalButtonColor
 				Cam.CameraSubject = LocalPlayer.Character.Humanoid
+			end
+		end)
+		
+		--\\ShaletM\\
+		local ShaletMLockName_Toggled = false
+		local ShaletMLockName_SpawnConnection
+		local ShaletMLockName_ChangedConnection
+		local ShaletMLockSkin_Toggled = false
+		local ShaletMLockSkin_SpawnConnection
+		local ShaletMLockSkin_ChangedConnection
+		
+		export type ShaletMChar = Model & {
+			Head: BasePart & {
+				HDAdminTitle : BillboardGui & {
+					TextLabel: TextLabel
+				}
+			};
+			Humanoid: Humanoid
+		}
+		--\\ ShaletM -> LockName
+		MainScreen.MainHack.Frames[Places.ShaletM].LockName.MouseButton1Click:Connect(function()
+			local LocalPlayerCharacter: ShaletMChar = LocalPlayer.Character
+			
+			if not ShaletMLockName_Toggled then
+				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.ToggledButtonColor
+				ShaletMLockName_Toggled = true
+				local function Reset()
+					game.ReplicatedStorage.PrivateCommands.Title:FireServer()
+				end
+				local function SetupPlayerSpawn()
+					ShaletMLockName_ChangedConnection = LocalPlayerCharacter.Head.HDAdminTitle.TextLabel:GetPropertyChangedSignal("Text"):Connect(Reset)
+				end
+				ShaletMLockName_SpawnConnection = LocalPlayer.CharacterAdded:Connect(SetupPlayerSpawn)
+			else
+				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.NormalButtonColor
+				ShaletMLockName_Toggled = false
+				ShaletMLockName_SpawnConnection:Disconnect()
+				ShaletMLockName_ChangedConnection:Disconnect()
+			end
+		end)
+		
+		--\\ ShaletM -> LockSkin
+		MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.MouseButton1Click:Connect(function()
+			local LocalPlayerCharacter: ShaletMChar = LocalPlayer.Character
+			
+			if not ShaletMLockSkin_Toggled then
+				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.ToggledButtonColor
+				ShaletMLockSkin_Toggled = true
+				local function Reset()
+					game.ReplicatedStorage.PrivateCommands.Char:FireServer()
+				end
+				local function SetupPlayerSpawn()
+					ShaletMLockSkin_ChangedConnection = LocalPlayerCharacter.Humanoid.ApplyDescriptionFinished:Connect(Reset)
+				end
+				ShaletMLockSkin_SpawnConnection = LocalPlayer.CharacterAdded:Connect(SetupPlayerSpawn)
+			else
+				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.NormalButtonColor
+				ShaletMLockSkin_Toggled = false
+				ShaletMLockSkin_SpawnConnection:Disconnect()
+				ShaletMLockSkin_ChangedConnection:Disconnect()
 			end
 		end)
 	end
