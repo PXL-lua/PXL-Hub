@@ -206,6 +206,7 @@
 		MainHack.ClipsDescendants = true
 		MainHack.Position = UDim2.new(0.49930653, 0, 0.511348367, 0)
 		MainHack.Size = UDim2.new(0.536754489, 0, 0.39967373, 0)
+		MainHack.Visible = false
 
 		Title_2.Name = "Title"
 		Title_2.Parent = MainHack
@@ -642,7 +643,9 @@
 				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.ToggledButtonColor
 				ShaletMLockName_Toggled = true
 				local function Reset()
-					game.ReplicatedStorage.PrivateCommands.Title:FireServer()
+					task.delay(1, function()
+						game.ReplicatedStorage.PrivateCommands.Title:FireServer()
+					end)
 				end
 				local function SetupPlayerSpawn()
 					ShaletMLockName_ChangedConnection = LocalPlayerCharacter.Head.HDAdminTitle.TextLabel:GetPropertyChangedSignal("Text"):Connect(Reset)
@@ -661,7 +664,7 @@
 			local LocalPlayerCharacter: ShaletMChar = LocalPlayer.Character
 			
 			if not ShaletMLockSkin_Toggled then
-				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.ToggledButtonColor
+				MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.BackgroundColor3 = Colors.ToggledButtonColor
 				ShaletMLockSkin_Toggled = true
 				local function Reset()
 					game.ReplicatedStorage.PrivateCommands.Char:FireServer()
@@ -671,7 +674,7 @@
 				end
 				ShaletMLockSkin_SpawnConnection = LocalPlayer.CharacterAdded:Connect(SetupPlayerSpawn)
 			else
-				MainScreen.MainHack.Frames[Places.ShaletM].LockName.BackgroundColor3 = Colors.NormalButtonColor
+				MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.BackgroundColor3 = Colors.NormalButtonColor
 				ShaletMLockSkin_Toggled = false
 				ShaletMLockSkin_SpawnConnection:Disconnect()
 				ShaletMLockSkin_ChangedConnection:Disconnect()
