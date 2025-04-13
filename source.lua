@@ -123,6 +123,7 @@
 		local TextLabel_7 = Instance.new("TextLabel")
 		local LockName = Instance.new("TextButton")
 		local TextLabel_8 = Instance.new("TextLabel")
+		local PlayerCharSize = Instance.new("TextBox")
 		local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
 
 		--Properties:
@@ -361,7 +362,7 @@
 		PlayerNameToSelect.PlaceholderColor3 = Color3.fromRGB(0, 255, 0)
 		PlayerNameToSelect.PlaceholderText = "PlayerUsername"
 		PlayerNameToSelect.Text = ""
-		PlayerNameToSelect.TextColor3 = Color3.fromRGB(255, 255, 255)
+		PlayerNameToSelect.TextColor3 = Color3.fromRGB(0, 255, 0)
 		PlayerNameToSelect.TextSize = 14.000
 		PlayerNameToSelect.TextTransparency = 0.450
 
@@ -534,6 +535,7 @@
 		LockName.BorderSizePixel = 0
 		LockName.Position = UDim2.new(0.0329999998, 0, 0.109999999, 0)
 		LockName.Size = UDim2.new(0.418996453, 0, 0.186089396, 0)
+		LockName.Visible = false
 		LockName.Font = Enum.Font.Roboto
 		LockName.Text = ""
 		LockName.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -555,6 +557,22 @@
 		TextLabel_8.TextSize = 14.000
 		TextLabel_8.TextTransparency = 0.450
 		TextLabel_8.TextWrapped = true
+
+		PlayerCharSize.Name = "PlayerCharSize"
+		PlayerCharSize.Parent = _1575090225_2
+		PlayerCharSize.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		PlayerCharSize.BackgroundTransparency = 0.950
+		PlayerCharSize.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		PlayerCharSize.BorderSizePixel = 0
+		PlayerCharSize.Position = UDim2.new(0.0329999998, 0, 0.109999999, 0)
+		PlayerCharSize.Size = UDim2.new(0.419, 0, 0.186000004, 0)
+		PlayerCharSize.Font = Enum.Font.Nunito
+		PlayerCharSize.PlaceholderColor3 = Color3.fromRGB(0, 255, 0)
+		PlayerCharSize.PlaceholderText = "Size"
+		PlayerCharSize.Text = ""
+		PlayerCharSize.TextColor3 = Color3.fromRGB(0, 255, 0)
+		PlayerCharSize.TextSize = 14.000
+		PlayerCharSize.TextTransparency = 0.450
 
 		UIAspectRatioConstraint_2.Parent = MainHack
 		UIAspectRatioConstraint_2.AspectRatio = 1.580
@@ -658,16 +676,27 @@
 			end
 		end
 		
+		local function ShaletM_Size_Changed()
+			PlaySound("TextSound")
+			local TextBox: TextBox = MainScreen.MainHack.Frames[Places.ShaletM].PlayerCharSize
+			local Text = TextBox.Text
+			local Text_Number = tonumber(Text)
+			local TextType = typeof(Text_Number)
+			if TextType == "number" then
+				game.ReplicatedStorage.PrivateCommands.Size:FireServer(Text_Number)
+			end
+		end
+		
 		local function OnCharacterSpawn()
 			if PlaceId == Places.ShaletM then
-				local HDAdminTitleText: TextLabel = LocalPlayer.Character:WaitForChild("Head"):WaitForChild("HDAdminTitle").TextLabel
+				--local HDAdminTitleText: TextLabel = LocalPlayer.Character:WaitForChild("Head"):WaitForChild("HDAdminTitle").TextLabel
 				local LocalPlayerHumanoid: Humanoid = LocalPlayer.Character:WaitForChild("Humanoid")
 				
-				HDAdminTitleText:GetPropertyChangedSignal("Text"):Connect(function()
-					if ShaletMLockName_Toggled then
-						game.ReplicatedStorage.PrivateCommands.Title:FireServer()
-					end
-				end)
+				--HDAdminTitleText:GetPropertyChangedSignal("Text"):Connect(function()
+				--	if ShaletMLockName_Toggled then
+				--		game.ReplicatedStorage.PrivateCommands.Title:FireServer()
+				--	end
+				--end)
 				
 				LocalPlayerHumanoid.ApplyDescriptionFinished:Connect(function()
 					if ShaletMLockSkin_Toggled then
@@ -686,6 +715,7 @@
 
 		MainScreen.MainHack.Frames[Places.ShaletM].LockName.MouseButton1Click:Connect(ShaletM_LockName)
 		MainScreen.MainHack.Frames[Places.ShaletM].LockSkin.MouseButton1Click:Connect(ShaletM_LockSkin)
+		MainScreen.MainHack.Frames[Places.ShaletM].PlayerCharSize:GetPropertyChangedSignal("Text"):Connect(ShaletM_Size_Changed)
 		
 		LocalPlayer.CharacterAdded:Connect(OnCharacterSpawn)
 		OnCharacterSpawn()
@@ -702,8 +732,6 @@
 		MainScreen.StartFrame.Title.Visible = false
 		MainScreen.StartFrame.Content.Visible = false
 		MainScreen.StartFrame.Start.Visible = false
-		
-		task.wait(2.5)
 		
 		MainScreen.StartFrame.Visible = true
 		PlaySound("BigTextSound")
